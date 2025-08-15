@@ -1,9 +1,8 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Loading;
 
 use SplFileInfo;
-use ActTesting\Act\Loader;
 
 class ScenarioLoader extends Loader
 {
@@ -30,4 +29,3 @@ class ScenarioLoader extends Loader
         return require $file->getPathname();
     }
 }
-    

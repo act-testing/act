@@ -1,8 +1,8 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Steps;
 
-use ActTesting\Act\StepRegistry;
+use ActTesting\Act\Steps\StepRegistry;
 
 function given(string $description, callable $callback): void
 {

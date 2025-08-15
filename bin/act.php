@@ -1,13 +1,13 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/helpers.php';
+require __DIR__ . '/../src/Steps/helpers.php';
 
-use ActTesting\Act\Console;
-use ActTesting\Act\StepLoader;
-use ActTesting\Act\ScenarioLoader;
-use ActTesting\Act\Runner;
-use ActTesting\Act\ConfigLoader;
+use ActTesting\Act\Console\Console;
+use ActTesting\Act\Loading\StepLoader;
+use ActTesting\Act\Loading\ScenarioLoader;
+use ActTesting\Act\Runtime\Runner;
+use ActTesting\Act\Config\ConfigLoader;
 
 $startTime = microtime(true);
 

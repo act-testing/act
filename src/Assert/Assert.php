@@ -1,8 +1,8 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Assert;
 
-use ActTesting\Act\AssertException;
+use ActTesting\Act\Assert\AssertException;
 
 class Assert
 {

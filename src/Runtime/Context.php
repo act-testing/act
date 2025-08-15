@@ -1,6 +1,6 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Runtime;
 
 class Context
 {

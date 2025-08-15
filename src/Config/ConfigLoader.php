@@ -1,6 +1,6 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Config;
 
 class ConfigLoader
 {
@@ -85,5 +85,3 @@ class ConfigLoader
         return realpath($baseDir . DIRECTORY_SEPARATOR . $path) ?: ($baseDir . DIRECTORY_SEPARATOR . $path);
     }
 }
-
-

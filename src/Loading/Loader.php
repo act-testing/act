@@ -1,6 +1,6 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Loading;
 
 use SplFileInfo;
 
@@ -14,7 +14,7 @@ class Loader
     }
 
     /**
-     * SKIP_DOTS is used to skip the . and .. directories
+     * SKIP_DOTS is used to ignore the . and .. directories
      */
     protected function loadDir(string $scenariosDir): \RecursiveIteratorIterator
     {

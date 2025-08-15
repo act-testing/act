@@ -1,10 +1,10 @@
 <?php
 
-namespace ActTesting\Act;
+namespace ActTesting\Act\Runtime;
 
-use ActTesting\Act\Console;
-use ActTesting\Act\Context;
-use ActTesting\Act\StepRegistry;
+use ActTesting\Act\Console\Console;
+use ActTesting\Act\Runtime\Context;
+use ActTesting\Act\Steps\StepRegistry;
 
 class Runner
 {
