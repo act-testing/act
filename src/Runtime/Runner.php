@@ -14,14 +14,17 @@ class Runner
 
     public function run(array $scenarios): void
     {
-        $context = new Context();
-
         $successCount = 0;
         $failCount = 0;
 
         foreach ($scenarios as $i => $scenario) {
 
             $this->displayScenario($i, $scenario);
+
+            $context = new Context();
+
+            $scenarioFailed = false;
+            $exceptionCaught = false;
 
             foreach ($scenario as $desc) {
 
@@ -38,13 +41,18 @@ class Runner
                     echo $this->console->ansi("✔", '32') . "\n";
 
                 } catch (\Throwable $e) {
-                    echo $this->console->ansi("✘ " . $e->getMessage(), '31') . "\n";
-                    $failCount++;
-                    break;
+                    $context->exception = $e;
+                    $exceptionCaught = true;
+                    echo $this->console->ansi("⏳ " . $e->getMessage(), '33') . "\n";
                 }
             }
 
-            $successCount++;
+            if ($exceptionCaught && $context->has('exception')) {
+                $scenarioFailed = true;
+                echo $this->console->ansi('Exception was not validated by a THEN step', '31') . "\n";
+            }
+
+            $scenarioFailed ? $failCount++ : $successCount++;
         }
 
         $this->displayResult($successCount, $failCount);
@@ -67,3 +75,4 @@ class Runner
         echo "\n";
     }
 }
+

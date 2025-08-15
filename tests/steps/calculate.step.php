@@ -15,6 +15,14 @@ when('I add [a] and [b]', function (Context $test, int $a, int $b) {
     $test->result = $test->calculator->add($a, $b);
 });
 
+when('I divide [a] by [b]', function (Context $test, int $a, int $b) {
+    $test->result = $test->calculator->divide($a, $b);
+});
+
 then('I get [result]', function (Context $test, int $result) {
     Assert::equals($result, $test->result);
+});
+
+then('I get an exception', function (Context $test) {
+   Assert::exception($test, 'Division by zero');
 });

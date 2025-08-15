@@ -13,7 +13,7 @@ Act is a tiny BDD-inspired testing framework (Given/When/Then). It lets you writ
 
 ## Installation
 
-Install via Composer (if published on Packagist):
+Install via Composer :
 
 ```bash
 composer require act-testing/act --dev

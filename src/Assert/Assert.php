@@ -2,6 +2,8 @@
 
 namespace ActTesting\Act\Assert;
 
+use Throwable;
+use ActTesting\Act\Runtime\Context;
 use ActTesting\Act\Assert\AssertException;
 
 class Assert
@@ -39,5 +41,16 @@ class Assert
     public static function fail(string $message): void
     {
         throw new AssertException($message);
+    }
+
+    public static function exception(Context $context, ?string $message = null): void
+    {
+        $exception = $context->exception;
+
+        if ($message !== $exception->getMessage()) {
+            throw new AssertException($message ?? 'Expected an exception, got ' . $exception->getMessage());
+        }
+
+        $context->remove('exception');
     }
 }
