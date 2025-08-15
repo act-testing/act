@@ -37,14 +37,14 @@ class Runner
 
                     echo $this->console->ansi("✔", '32') . "\n";
 
-                    $successCount++;
-
                 } catch (\Throwable $e) {
                     echo $this->console->ansi("✘ " . $e->getMessage(), '31') . "\n";
                     $failCount++;
                     break;
                 }
             }
+
+            $successCount++;
         }
 
         $this->displayResult($successCount, $failCount);
