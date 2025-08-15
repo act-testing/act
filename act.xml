@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act>
+    <paths>
+        <steps>tests/steps</steps>
+        <scenarios>tests/scenarios</scenarios>
+    </paths>
+</act>

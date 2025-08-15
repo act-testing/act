@@ -7,16 +7,22 @@ use ActTesting\Act\Console;
 use ActTesting\Act\StepLoader;
 use ActTesting\Act\ScenarioLoader;
 use ActTesting\Act\Runner;
+use ActTesting\Act\ConfigLoader;
 
 $startTime = microtime(true);
 
 $console = new Console(PHP_SAPI === 'cli');
 
+$options = getopt('', ['configuration:', 'c:']);
+$configFile = $options['configuration'] ?? ($options['c'] ?? null);
+
+$config = (new ConfigLoader())->loadFrom($configFile ?? 'act.xml');
+
 $stepLoader = new StepLoader();
-$stepLoader->loadFrom(__DIR__ . '/../tests/steps');
+$stepLoader->loadFrom($config->stepsDir);
 
 $scenarioLoader = new ScenarioLoader();
-$steps = $scenarioLoader->loadFrom(__DIR__ . '/../tests/scenarios');
+$steps = $scenarioLoader->loadFrom($config->scenariosDir);
 
 $runner = new Runner($console);
 $runner->run($steps);

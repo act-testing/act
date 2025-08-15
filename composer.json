@@ -1,5 +1,6 @@
 {
     "name": "act-testing/act",
+    "description": "Act Testing Framework",
     "autoload": {
         "psr-4": {
             "ActTesting\\Act\\": "src/"
