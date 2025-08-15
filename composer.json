@@ -1,0 +1,15 @@
+{
+    "name": "act-testing/act",
+    "autoload": {
+        "psr-4": {
+            "ActTesting\\Act\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "De Gracia Mathieu",
+            "email": "degracia.mathieu@nublar.dev"
+        }
+    ],
+    "require": {}
+}
