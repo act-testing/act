@@ -32,24 +32,23 @@ class Runner
 
                     [$type, $callback] = StepRegistry::find($desc);
 
-                    $typeLabel = str_pad(" $type:", 8);
-                    echo $this->console->colorType($type, $typeLabel) . " $desc ... ";
+                    $this->console->displayStepStart($type, $desc);
 
                     $result = $callback($context);
                     $context->absorb($result);
 
-                    echo $this->console->ansi("✔", '32') . "\n";
+                    $this->console->displayStepSuccess();
 
                 } catch (\Throwable $e) {
                     $context->exception = $e;
                     $exceptionCaught = true;
-                    echo $this->console->ansi("⏳ " . $e->getMessage(), '33') . "\n";
+                    $this->console->displayStepException($e);
                 }
             }
 
             if ($exceptionCaught && $context->has('exception')) {
                 $scenarioFailed = true;
-                echo $this->console->ansi('Exception was not validated by a THEN step', '31') . "\n";
+                $this->console->displayScenarioExceptionNotValidated();
             }
 
             $scenarioFailed ? $failCount++ : $successCount++;
@@ -60,19 +59,11 @@ class Runner
 
     private function displayScenario(int $i, array $scenario): void
     {
-        echo "\n" . $this->console->ansi("=== Scenario " . ($i + 1) . " ===", '1;36') . "\n";
+        $this->console->displayScenarioHeader($i);
     }
 
     private function displayResult(int $successCount, int $failCount): void
     {
-        echo "\n" . $this->console->ansi('Result:', '1')
-            . ' ' . $this->console->ansi($successCount . ' OK', '32');
-
-        if ($failCount > 0) {
-            echo ', ' . $this->console->ansi($failCount . ' FAIL', '31');
-        }
-
-        echo "\n";
+        $this->console->displayResult($successCount, $failCount);
     }
 }
-

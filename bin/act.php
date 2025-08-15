@@ -4,6 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/Steps/helpers.php';
 
 use ActTesting\Act\Console\Console;
+use ActTesting\Act\Console\TerminalConsole;
 use ActTesting\Act\Loading\StepLoader;
 use ActTesting\Act\Loading\ScenarioLoader;
 use ActTesting\Act\Runtime\Runner;
@@ -11,7 +12,8 @@ use ActTesting\Act\Config\ConfigLoader;
 
 $startTime = microtime(true);
 
-$console = new Console(PHP_SAPI === 'cli');
+$terminal = new TerminalConsole(PHP_SAPI === 'cli');
+$console = new Console($terminal);
 
 $options = getopt('', ['configuration:', 'c:']);
 $configFile = $options['configuration'] ?? ($options['c'] ?? null);
@@ -28,6 +30,4 @@ $runner = new Runner($console);
 $runner->run($steps);
 
 $elapsedMs = (int) round((microtime(true) - $startTime) * 1000);
-echo $console->ansi('Duration:', '1')
-     . ' ' . $console->ansi($elapsedMs . ' ms', '36') 
-     . "\n";
+$console->writeln($console->bold('Duration:') . ' ' . $console->info($elapsedMs . ' ms'));
